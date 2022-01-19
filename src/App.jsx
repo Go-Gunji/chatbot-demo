@@ -9,10 +9,11 @@ class App extends React.Component {
     this.state = {
       answers: [],
       chats: [],
-      currentId: "init",
+      currentId: 'init',
       dataset: defaultDataset,
-      open: false
-    }
+      open: false,
+    };
+  }
 
   initAnswer = () => {
     const initDataset = this.state.dataset[this.state.currentId];
