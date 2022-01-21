@@ -32,7 +32,7 @@ class App extends React.Component {
     return (
       <section className="c-section">
         <div className="c-box">
-          <AnswersList answers={this.state.answers} />
+          <Chats chats={this.state.chats} />
         </div>
       </section>
     );
