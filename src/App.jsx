@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultDataset from './dataset';
 import './assets/styles/style.css';
-import { AnswersList } from './components';
+import { AnswersList, Chats } from './components';
 
 class App extends React.Component {
   constructor(props) {
