@@ -15,6 +15,20 @@ class App extends React.Component {
     };
   }
 
+  displayNextQuestions = (nextQuestionId) => {
+    const chats = this.state.chats;
+    chats.push({
+      text: this.state.dataset[nextQuestionId].question,
+      type: 'question',
+    });
+
+    this.setState({
+      answers: this.state.dataset[nextQuestionId].answers,
+      chats: chats,
+      currentId: nextQuestionId,
+    });
+  };
+
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch (true) {
       case nextQuestionId === 'init':
