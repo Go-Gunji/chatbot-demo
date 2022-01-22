@@ -33,7 +33,15 @@ class App extends React.Component {
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch (true) {
       case nextQuestionId === 'init':
-        this.displayNextQuestions(nextQuestionId);
+        setTimeout(() => {
+          this.displayNextQuestions(nextQuestionId);
+        }, 500);
+        break;
+      case /^https:*/.test(nextQuestionId):
+        const a = document.createElement('a');
+        a.href = nextQuestionId;
+        a.target = '_blank';
+        a.click();
         break;
       default:
         const chats = this.state.chats;
@@ -45,7 +53,9 @@ class App extends React.Component {
         this.setState({
           chats: chats,
         });
-        this.displayNextQuestions(nextQuestionId);
+        setTimeout(() => {
+          this.displayNextQuestions(nextQuestionId);
+        }, 1000);
         break;
     }
   };
@@ -53,6 +63,13 @@ class App extends React.Component {
   componentDidMount() {
     const initAnswer = '';
     this.selectAnswer(initAnswer, this.state.currentId);
+  }
+
+  componentDidUpdate() {
+    const scrollArea = document.getElementById('scroll-area');
+    if (scrollArea) {
+      scrollArea.scrollTop = scrollArea.scrollHeight;
+    }
   }
 
   render() {
