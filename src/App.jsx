@@ -34,9 +34,14 @@ class App extends React.Component {
     switch (true) {
       case nextQuestionId === 'init':
         setTimeout(() => {
-        this.displayNextQuestions(nextQuestionId);
+          this.displayNextQuestions(nextQuestionId);
         }, 500);
         break;
+      case /^https:*/.test(nextQuestionId):
+        const a = document.createElement('a');
+        a.href = nextQuestionId;
+        a.target = '_blank';
+        a.click();
         break;
       default:
         const chats = this.state.chats;
@@ -49,7 +54,7 @@ class App extends React.Component {
           chats: chats,
         });
         setTimeout(() => {
-        this.displayNextQuestions(nextQuestionId);
+          this.displayNextQuestions(nextQuestionId);
         }, 1000);
         break;
     }
