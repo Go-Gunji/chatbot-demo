@@ -14,6 +14,8 @@ class App extends React.Component {
       open: false,
     };
     this.selectAnswer = this.selectAnswer.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
   }
 
   displayNextQuestions = (nextQuestionId) => {
@@ -72,6 +74,14 @@ class App extends React.Component {
     }
   }
 
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     return (
       <section className="c-section">
@@ -81,6 +91,7 @@ class App extends React.Component {
             answers={this.state.answers}
             select={this.selectAnswer}
           />
+          <FormDialog open={this.state.open} handleClose={this.handleClose} />
         </div>
       </section>
     );
