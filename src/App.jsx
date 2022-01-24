@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultDataset from './dataset';
 import './assets/styles/style.css';
-import { AnswersList, Chats } from './components';
+import { AnswersList, Chats, FormDialog } from './components';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +14,8 @@ class App extends React.Component {
       open: false,
     };
     this.selectAnswer = this.selectAnswer.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
   }
 
   displayNextQuestions = (nextQuestionId) => {
@@ -36,6 +38,9 @@ class App extends React.Component {
         setTimeout(() => {
           this.displayNextQuestions(nextQuestionId);
         }, 500);
+        break;
+      case nextQuestionId === 'contact':
+        this.handleClickOpen();
         break;
       case /^https:*/.test(nextQuestionId):
         const a = document.createElement('a');
@@ -72,6 +77,14 @@ class App extends React.Component {
     }
   }
 
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     return (
       <section className="c-section">
@@ -81,6 +94,7 @@ class App extends React.Component {
             answers={this.state.answers}
             select={this.selectAnswer}
           />
+          <FormDialog open={this.state.open} handleClose={this.handleClose} />
         </div>
       </section>
     );
