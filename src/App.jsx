@@ -39,6 +39,9 @@ class App extends React.Component {
           this.displayNextQuestions(nextQuestionId);
         }, 500);
         break;
+      case nextQuestionId === 'contact':
+        this.handleClickOpen();
+        break;
       case /^https:*/.test(nextQuestionId):
         const a = document.createElement('a');
         a.href = nextQuestionId;
